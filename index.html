@@ -1,31 +1,93 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Sebastian's Page</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <div onclick="RevealText()" style="padding: 50px; background: red; width: 20%;">Click me to reveal text</div>
+    <h1>Hello World!</h1>        
+        <form  action="#" name="myForm" onsubmit="updateFunction()">
+            <label for="Condition">Condition:</label>
+                <input type="text" name="Condition" id="Condition">
+            <label for="Temperature">Temperature:</label>
+                <input type="text" name="Temperature" id="Temperature">
+            <label for="Length">Length:</label>
+                <input type="text" name="Length" id="Length">
+            <label for="Condiments">Condiments:</label>
+                <input type="text" name="Condiments" id="Condiments">
+            <label for="Bread">Bread:</label>
+                <input type="text" name="Bread" id="Bread">
+            <label for="Meat">Meat:</label>
+                <input type="text" name="Meat" id="Meat">                
+                <input type="button" id="submitFormData" onclick=updateFunction(); value="Submit" />
+        </form>
     <script>
-        function RevealText() {
-          if (document.getElementById("hidden").style.display === "block") {
-            document.getElementById("hidden").style.display = "none";
-          }
-          else {document.getElementById("hidden").style.display = "block";}
+        const hotDog = {
+            condition: "warm",
+            temperature: 80,
+            length: 10,
+            condiments: "ketchup",
+            bread: "whole wheat",
+            meat: "pork",
+            timeTillCool: function(){
+                let time = parseInt(this.temperature) - 30
+                return "It will take " + time + " minutes before your hotdog gets cold!"
+            },
+            timeTillConsumption: function(){
+                let time = parseInt(this.length) - 8
+                return "It will take " + time + " minutes for you to finish your hotdog!"
+            }
         }
+        const updateFunction = function() {
+           const form = document.myForm
+           document.getElementById("condition").innerHTML = form.Condition.value
+           document.getElementById("temperature").innerHTML = form.Temperature.value
+           document.getElementById("length").innerHTML = form.Length.value
+           document.getElementById("condiments").innerHTML = form.Condiments.value
+           document.getElementById("bread").innerHTML = form.Bread.value
+           document.getElementById("meat").innerHTML = form.Meat.value
+           hotDog.length = form.Length.value
+           hotDog.temperature =  form.Temperature.value
+            document.getElementById("coolingTime").innerHTML = hotDog.timeTillCool();
+            document.getElementById("eatingTime").innerHTML = hotDog.timeTillConsumption();
+            return false
+        }
+        
     </script>
     <h3>My name is Sebastian, and to name a few things about myself,
       I play piano as a hobby, I have a predilection for math,
       and I have a special place in my heart for coding!</h3>
-    <div id="hidden" style="display: none;">
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, repellat ipsum facere voluptate dicta obcaecati deserunt nobis suscipit eaque?</div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, repellat ipsum facere voluptate dicta obcaecati deserunt nobis suscipit eaque?</div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, repellat ipsum facere voluptate dicta obcaecati deserunt nobis suscipit eaque?</div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, repellat ipsum facere voluptate dicta obcaecati deserunt nobis suscipit eaque?</div> 
+    <div class="options">
+        <div>
+            <div>Condition: </div>
+            <div id="condition"></div>
+        </div>
+        <div>
+            <div>Temperature: </div>
+            <div id="temperature"></div>
+        </div>
+        <div>
+            <div id="coolingTime"></div>
+        </div>   
+        <div>
+            <div>Length (cm): </div>
+            <div id="length"></div>
+        </div>
+        <div>
+            <div id="eatingTime"></div>
+        </div> 
+        <div>
+            <div>Condiments: </div>
+            <div id="condiments"></div>
+        </div>
+        <div>
+            <div>Bread: </div>
+            <div id="bread"></div>
+        </div>
+        <div>
+            <div>Meat: </div>
+            <div id="meat"></div>
+        </div>       
     </div>
     </body>
   </html>
